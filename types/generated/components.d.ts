@@ -50,6 +50,22 @@ export interface SharedSeo extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedServicesCard extends Struct.ComponentSchema {
+  collectionName: 'components_shared_services_cards';
+  info: {
+    displayName: 'ServicesCard';
+  };
+  attributes: {
+    Carosel: Schema.Attribute.Media<
+      'images' | 'files' | 'videos' | 'audios',
+      true
+    >;
+    Description: Schema.Attribute.Text;
+    Image: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Title: Schema.Attribute.String;
+  };
+}
+
 export interface SharedSlider extends Struct.ComponentSchema {
   collectionName: 'components_shared_sliders';
   info: {
@@ -69,6 +85,7 @@ declare module '@strapi/strapi' {
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
+      'shared.services-card': SharedServicesCard;
       'shared.slider': SharedSlider;
     }
   }
