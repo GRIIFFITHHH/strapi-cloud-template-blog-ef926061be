@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "video_galls",
+  "info": {
+    "singularName": "video-gall",
+    "pluralName": "video-galls",
+    "displayName": "VideoGall"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Video": {
+      "type": "component",
+      "component": "shared.video",
+      "repeatable": true
+    }
+  }
+}

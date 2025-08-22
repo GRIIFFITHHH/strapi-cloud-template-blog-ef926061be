@@ -1,0 +1,20 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plant_sections",
+  "info": {
+    "singularName": "plant-section",
+    "pluralName": "plant-sections",
+    "displayName": "PlantSection"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Plant": {
+      "type": "component",
+      "component": "shared.plant",
+      "repeatable": true
+    }
+  }
+}

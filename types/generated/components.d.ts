@@ -11,6 +11,19 @@ export interface SharedMedia extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedPlant extends Struct.ComponentSchema {
+  collectionName: 'components_shared_plants';
+  info: {
+    displayName: 'Plant';
+  };
+  attributes: {
+    Description: Schema.Attribute.Text;
+    IMG: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    Title: Schema.Attribute.String;
+    Video: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 export interface SharedQuote extends Struct.ComponentSchema {
   collectionName: 'components_shared_quotes';
   info: {
@@ -78,15 +91,27 @@ export interface SharedSlider extends Struct.ComponentSchema {
   };
 }
 
+export interface SharedVideo extends Struct.ComponentSchema {
+  collectionName: 'components_shared_videos';
+  info: {
+    displayName: 'Video';
+  };
+  attributes: {
+    VideoGall: Schema.Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
       'shared.media': SharedMedia;
+      'shared.plant': SharedPlant;
       'shared.quote': SharedQuote;
       'shared.rich-text': SharedRichText;
       'shared.seo': SharedSeo;
       'shared.services-card': SharedServicesCard;
       'shared.slider': SharedSlider;
+      'shared.video': SharedVideo;
     }
   }
 }
