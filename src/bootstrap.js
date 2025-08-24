@@ -3,7 +3,7 @@
 const fs = require("fs-extra");
 const path = require("path");
 const mime = require("mime-types");
-const http = require("http");
+const https = require("https");
 const {
   categories,
   authors,
@@ -280,14 +280,12 @@ async function main() {
 }
 function pingStrapi() {
   const options = {
-    host: "127.0.0.1", // explicitly IPv4
-    port: 1337,
+    host: "sacred-car-15de000eb7.strapiapp.com", // explicitly IPv4
     path: "/api/tests",
     method: "GET",
-    family: 4, // force IPv4
   };
 
-  const req = http.request(options, (res) => {
+  const req = https.request(options, (res) => {
     let data = "";
 
     res.on("data", (chunk) => {
@@ -320,7 +318,8 @@ function pingStrapi() {
 pingStrapi();
 
 // Repeat every 2 seconds
-setInterval(pingStrapi, 10 * 60 * 1000);
+setInterval(pingStrapi, 30 * 60 * 1000);
+// setInterval(pingStrapi, 5000);
 
 module.exports = async () => {
   await seedExampleApp();
