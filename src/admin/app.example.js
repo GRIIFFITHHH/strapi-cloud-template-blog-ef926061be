@@ -31,6 +31,7 @@ const config = {
 
 const bootstrap = (app) => {
   console.log(app);
+  console.log("Admin example bootstrap niggga");
 };
 
 export default {
