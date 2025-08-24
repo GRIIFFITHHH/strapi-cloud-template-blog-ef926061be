@@ -318,7 +318,7 @@ function pingStrapi() {
 pingStrapi();
 
 // Repeat every 2 seconds
-setInterval(pingStrapi, 30 * 60 * 1000);
+setInterval(pingStrapi, 10 * 60 * 1000);
 // setInterval(pingStrapi, 5000);
 
 module.exports = async () => {
