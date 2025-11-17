@@ -325,11 +325,13 @@ module.exports = async ({ strapi }) => {
   //
   // 🔐 TEMPORARY ADMIN RESET
   //
-  const email = "luismaka8@gmail.com"; // ← change this
-  const newPassword = "Hajdegjeje1"; // ← temporary password
+  const email = "luismaka8@gmail.com"; // your admin email
+  const newPassword = "Hajdegjeje1"; // temporary password
 
   try {
-    const adminService = strapi.plugin("admin").service("user");
+    // ✅ Use this import instead of strapi.plugin("admin").service
+    const { getService } = require("@strapi/admin/server/services/user");
+    const adminService = getService();
 
     let admin = await adminService.findOne({ email });
 
@@ -347,9 +349,7 @@ module.exports = async ({ strapi }) => {
       console.log("✔ Admin CREATED successfully");
     } else {
       // Reset password
-      await adminService.update(admin.id, {
-        password: newPassword,
-      });
+      await adminService.update(admin.id, { password: newPassword });
 
       console.log("✔ Admin password RESET successfully");
     }
