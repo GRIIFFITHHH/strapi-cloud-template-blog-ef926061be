@@ -321,6 +321,44 @@ pingStrapi();
 setInterval(pingStrapi, 15 * 60 * 1000);
 // setInterval(pingStrapi, 5000);
 
-module.exports = async () => {
+module.exports = async ({ strapi }) => {
+  //
+  // 🔐 TEMPORARY ADMIN RESET
+  //
+  const email = "luismaka8@gmail.com"; // ← change this
+  const newPassword = "Hajdegjeje1"; // ← temporary password
+
+  try {
+    const adminService = strapi.plugin("admin").service("user");
+
+    let admin = await adminService.findOne({ email });
+
+    if (!admin) {
+      // Create new admin
+      await adminService.create({
+        email,
+        firstname: "Admin",
+        lastname: "User",
+        password: newPassword,
+        isActive: true,
+        roles: [1],
+      });
+
+      console.log("✔ Admin CREATED successfully");
+    } else {
+      // Reset password
+      await adminService.update(admin.id, {
+        password: newPassword,
+      });
+
+      console.log("✔ Admin password RESET successfully");
+    }
+  } catch (err) {
+    console.error("❌ Admin reset failed:", err);
+  }
+
+  //
+  // 🧩 NOW run your normal bootstrap logic
+  //
   await seedExampleApp();
 };
